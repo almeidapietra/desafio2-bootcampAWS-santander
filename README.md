@@ -80,10 +80,10 @@ Descrição do Fluxo
 6. FIM (Workflow completo)
    
 Componentes:
-3 Lambda Functions: ValidarPedido, ProcessarPagamento, EnviarNotificacao
-1 Choice State: Decisão condicional sobre validade do pedido
-1 Retry Policy: 3 tentativas com backoff exponencial
-1 Catch Block: Tratamento de erro no pagamento
+- 3 Lambda Functions: ValidarPedido, ProcessarPagamento, EnviarNotificacao
+- 1 Choice State: Decisão condicional sobre validade do pedido
+- 1 Retry Policy: 3 tentativas com backoff exponencial
+- 1 Catch Block: Tratamento de erro no pagamento
 ------------------------------------------------------------------------------------------------------------------------------
 
 ## Por que usar Step Functions?
