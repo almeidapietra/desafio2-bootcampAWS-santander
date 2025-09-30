@@ -57,26 +57,28 @@ Você define uma State Machine (Máquina de Estados) que é basicamente um diagr
 Pensei num workflow que simula o fluxo completo de processamento de um pedido em um e-commerce:
 
 Descrição do Fluxo
-📥 INÍCIO (Input com dados do pedido)
+
+1. INÍCIO (Input com dados do pedido)
     ↓
-1️⃣ ValidarPedido (Lambda Task)
+2. ValidarPedido (Lambda Task)
    • Verifica se os dados do pedido estão corretos
    • Valida: ID, valor, cliente, itens
     ↓
-2️⃣ PedidoValido? (Choice State)
+3. PedidoValido? (Choice State)
    • Se VÁLIDO → continua o fluxo
    • Se INVÁLIDO → pula para notificação de erro
     ↓
-3️⃣ ProcessarPagamento (Lambda Task com Retry)
+4. ProcessarPagamento (Lambda Task com Retry)
    • Tenta processar o pagamento
    • Configurado com 3 tentativas automáticas
    • Se falhar após 3 tentativas → Catch captura o erro
     ↓
-4️⃣ NotificarSucesso OU NotificarErro (Lambda Task)
+5. NotificarSucesso OU NotificarErro (Lambda Task)
    • Envia notificação conforme resultado
    • Pode ser email, SMS, webhook, etc.
     ↓
-✅ FIM (Workflow completo)
+6. FIM (Workflow completo)
+   
 Componentes:
 3 Lambda Functions: ValidarPedido, ProcessarPagamento, EnviarNotificacao
 1 Choice State: Decisão condicional sobre validade do pedido
